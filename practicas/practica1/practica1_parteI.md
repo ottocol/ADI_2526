@@ -150,9 +150,9 @@ Por desgracia este mecanismo de navegación en el que cambia solo una parte de l
     <img href="MiSitio.png">
     <nav data-component="SiteNavBar">
       <ul>
-        <li><a href="/inicio.html" data-nav>Inicio</a></li>
-        <li><a href="/productos.html" data-nav>Productos</a></li>
-        <li><a href="/perfil.html" data-nav>Perfil</a></li>
+        <li><a href="inicio.html" data-nav>Inicio</a></li>
+        <li><a href="productos.html" data-nav>Productos</a></li>
+        <li><a href="perfil.html" data-nav>Perfil</a></li>
       </ul>
     </nav>
   </header>
@@ -162,7 +162,7 @@ Por desgracia este mecanismo de navegación en el que cambia solo una parte de l
   		<h1>Productos</h1>
   		<ul data-component="ProductList">
     		<li data-component="ProductCard">
-      			<a href="/producto/camiseta-basica">
+      			<a href="producto/camiseta-basica">
         			<img src="img/camiseta.jpg" alt="Camiseta básica negra"/>
         			<h2>Camiseta</h2>
       			</a>
@@ -226,7 +226,7 @@ Aquí tenéis el ejemplo de la lista de productos (camisetas) que teníamos ante
   <h1 class="product-list__title">Productos</h1>
   <ul class="product-list__items" data-component="ProductList">
     <li class="product-card" data-component="ProductCard">
-      <a href="/producto/camiseta-basica" class="product-card__link">
+      <a href="producto/camiseta-basica" class="product-card__link">
         <img src="img/camiseta.jpg" alt="Camiseta básica negra" class="product-card__image" />
         <h2 class="product-card__title">Camiseta</h2>
       </a>
