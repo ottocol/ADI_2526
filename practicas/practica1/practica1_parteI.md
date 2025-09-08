@@ -1,5 +1,7 @@
 # Práctica 1, parte I: Prototipado de un frontend con HTML/CSS
 
+> ⚠️ **La práctica se puede realizar por parejas o individualmente**. No se valorará más si la realizáis de manera individual, se aplicará el mismo baremo.
+
 ## 1. Introducción. Idea inicial
 
 Durante las prácticas de la asignatura desarrollaremos el *backend* y el *frontend* de una aplicación web cuya temática queda a vuestra elección. Puede tratar de cualquier tema que se os ocurra: una mini red social para compartir fotos, un sitio de recetas de cocina, un sitio para llevar la pista de las películas/series que has visto y compartir opiniones con otros usuarios,…
@@ -250,6 +252,8 @@ La ventaja de esta convención es que es rápida e intuitiva a la hora de ir aju
 **Podéis usar la convención que queráis siempre que sea "estándar" como las dos que hemos explicado**. Hay otras convenciones que no hemos comentado como OOCSS o SMACSS.
 
 ## 3. Entrega y baremo de evaluación
+
+Recordad que **la práctica se puede realizar por parejas o individualmente**. No se valorará más si la realizáis de manera individual, se aplicará el mismo baremo.
 
 El prototipo HTML/CSS se puede entregar **hasta el 29 de septiembre a las 23:59**. La entrega se realizará por moodle, comprimiendo todos los archivos en un único .zip o similar. 
 
