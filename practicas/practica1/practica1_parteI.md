@@ -4,7 +4,7 @@
 
 Durante las prácticas de la asignatura desarrollaremos el *backend* y el *frontend* de una aplicación web cuya temática queda a vuestra elección. Puede tratar de cualquier tema que se os ocurra: una mini red social para compartir fotos, un sitio de recetas de cocina, un sitio para llevar la pista de las películas/series que has visto y compartir opiniones con otros usuarios,…
 
-Lo primero que deberíais hacer es **plantearos de qué temática queréis desarrollar vuestra app web y haceros un listado de casos de uso**. No es necesario demasiado nivel de detalle. Podéis tomar como modelo [este ejemplo](ejemplo_crowdfunding.html#requerimientos).
+Lo primero que deberíais hacer es **plantearos de qué temática queréis desarrollar vuestra app web y haceros un listado de casos de uso**. No es necesario demasiado nivel de detalle. Podéis tomar como modelo [este ejemplo](https://github.com/ottocol/ADI_2526/blob/main/practicas/practica1/ejemplo_crowdfunding.md).
 
 **La aplicación debe permitir, como mínimo**
 
@@ -116,12 +116,6 @@ Si tuviéramos un componente que fuera un formulario de login lo típico sería 
 
 Dicho esto, veréis que en muchos componentes del mundo real se tiende a usar siempre `<div>` como la etiqueta raíz, por ejemplo se usa `<form>` para definir un formulario de login pero se pone dentro de un `<div>`. Esto a veces es por cuestiones de CSS (para poder definir el estilo en el contenedor sin "ensuciar" el `<form>`) y a veces es simplemente por convención.
 
-
-
-
-</aside>	
-
-
 #### 2.1.3 Layout de páginas y navegación
 
 En las apps web "clásicas" para mostrar información nueva al usuario típicamente debemos cambiar de página, navegando a un HTML nuevo. En las modernas lo normal es mostrar información nueva sin cambiar de página, modificando solo lo que cambia y dejando el resto estático. 
@@ -187,7 +181,7 @@ Nótese que nos hemos inventado nuevos atributos `data-`:
 Cuando usemos el *framework* de *frontend* podremos tener una sola vez el layout de la página principal en "index.html" y la parte que no se repite en los componentes `Productos`, `Inicio` y `Perfil`. Además sustituiremos la etiqueta marcada con `data-outlet` por la etiqueta específica del framework para indicar "outlet" (por ejemplo en Vue se usa `<RouterView>`) y haremos lo propio con los enlaces marcados con `data-nav` (por ejemplo en Vue se usa `<RouterLink>`).
 
 
-> 
+
 
 ### 2.2 Estructura del CSS
 

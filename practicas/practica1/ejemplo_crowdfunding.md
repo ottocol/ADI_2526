@@ -16,8 +16,6 @@ Los casos de uso básicos son:
 
 ## Parte 2: Modelo de datos <a id="modelo_datos"></a>
 
-Usaremos un diagrama ER para representar el modelo de datos de Firestore ya que no hay una convención universal para representar diagramas de bases de datos NoSQL, pero hay que recalcar que no hay tablas ni relaciones entre ellas con claves ajenas. En el diagrama, las entidades son colecciones de Firestore y las relaciones entre entidades no son tales sino que representan subcolecciones.
-
 
 ```mermaid
 erDiagram
@@ -57,6 +55,3 @@ erDiagram
     PROYECTOS ||--|{ MODALIDADES_APOYO : "contiene"
     PROYECTOS ||--|{ ACTUALIZACIONES : "contiene"
 ```
-
-> NOTA: los usuarios en la colección `Usuarios` son los mismos que en auth pero pueden tener datos adicionales, cada vez que un usuario se dé de alta con `createUserWithEmailAndPassword` añadiríamos un usuario a la colección de `Usuarios` con otros datos adicionales como la fecha de registro o el nombre (este último en el futuro vendrá del formulario que el usuario rellene en la web, de momento para probar pasaremos esos datos manualmente).
-
