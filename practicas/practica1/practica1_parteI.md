@@ -206,9 +206,9 @@ Hay varias convenciones útiles para que las clases no se conviertan en un caos.
 **BEM (Block-Element-Modifier)** es un estilo de nombrado de clases CSS muy usado en proyectos grandes. La idea es dividir el nombre de una clase en bloque, elemento y modificador:
 
 ```css
-.card { /* bloque */ }
-.card__title { /* elemento dentro de card */ }
-.card--destacado { /* variante (modificador) */ }
+.product-card { /* bloque */ }
+.product-card__title { /* elemento dentro de product-card */ }
+.product-card--destacado { /* variante (modificador) */ }
 ```
 
 La ventaja principal es que los nombres son autoexplicativos, es fácil ver qué pertenece a qué componente.
