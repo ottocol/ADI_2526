@@ -201,7 +201,7 @@ En general, se recomienda usar clases para aplicar estilos.
 <button class="boton-primario">Añadir</button>
 ```
 
-Hay varias convenciones útiles para que las clases no se conviertan en un caos. Vamos a comentar dos muy extendidas: BEM y "estilo Tailwind"
+Hay varias convenciones útiles para que las clases no se conviertan en un caos. Vamos a comentar dos muy extendidas: BEM y "estilo utilitario"
 
 **BEM (Block-Element-Modifier)** es un estilo de nombrado de clases CSS muy usado en proyectos grandes. La idea es dividir el nombre de una clase en bloque, elemento y modificador:
 
@@ -239,7 +239,7 @@ Aquí tenéis el ejemplo de la lista de productos (camisetas) que teníamos ante
 
 ```
 
-En lo que podríamos llamar **"estilo Tailwind"**, porque ha sido popularizado por la herramienta del mismo nombre, las clases no describen un componente, sino propiedades concretas:
+En lo que podríamos llamar **"estilo utilitario"**, popularizado por herramientas como [Tailwind](https://tailwindcss.com), las clases no describen un componente, sino un conjunto de propiedades concretas. Veamos un ejemplo con Tailwind:
 
 ```html
 <button class="p-2 bg-blue-500 text-white rounded">Comprar</button>
