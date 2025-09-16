@@ -157,6 +157,7 @@ Por desgracia este mecanismo de navegación en el que cambia solo una parte de l
     <section data-component="Productos">
   		<h1>Productos</h1>
   		<ul data-component="ProductList">
+        <input type="search" placeholder="buscar producto">
     		<li data-component="ProductCard">
       			<a href="producto/camiseta-basica">
         			<img src="img/camiseta.jpg" alt="Camiseta básica negra"/>
@@ -218,9 +219,11 @@ Aquí tenéis el ejemplo de la lista de productos (camisetas) que teníamos ante
 
 ```html
 
-<section data-component="Productos" class="product-list">
-  <h1 class="product-list__title">Productos</h1>
-  <ul class="product-list__items" data-component="ProductList">
+<section data-component="Productos" class="productos">
+  <h1 class="productos__title">Productos</h1>
+  <ul data-component="ProductList" class="product-list">
+    <!-- este campo de búsqueda no aparece en la figura, es para mejorar el ejemplo -->
+    <input type="search" placeholder="Busca el producto..." class="product-list_searchbar">
     <li class="product-card" data-component="ProductCard">
       <a href="producto/camiseta-basica" class="product-card__link">
         <img src="img/camiseta.jpg" alt="Camiseta básica negra" class="product-card__image" />
