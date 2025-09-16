@@ -222,7 +222,6 @@ Aquí tenéis el ejemplo de la lista de productos (camisetas) que teníamos ante
 <section data-component="Productos" class="productos">
   <h1 class="productos__title">Productos</h1>
   <ul data-component="ProductList" class="product-list">
-    <!-- este campo de búsqueda no aparece en la figura, es para mejorar el ejemplo -->
     <input type="search" placeholder="Busca el producto..." class="product-list_searchbar">
     <li class="product-card" data-component="ProductCard">
       <a href="producto/camiseta-basica" class="product-card__link">
