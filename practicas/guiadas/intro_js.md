@@ -24,11 +24,23 @@ Javascript nació en el lado del cliente, dentro del navegador, pero en los últ
     +  El núcleo del lenguaje está estandarizado en lo que se denomina ECMAScript. Se eligió un nombre "neutro", ya que Javascript es una marca comercial (ahora de Oracle - antes de Sun, y antes de Netscape). 
     + Desde 2015, cada año hay una nueva versión del estándar, que se precede de las letras ES (por ECMAScript). La versión anterior a ES2015 usaba una nomenclatura más tradicional, denominándose ES5. Por complicar un poco, en algunos sitios ES2015 aparece como ES6, usando la nomenclatura antigua. Las últimas versiones de la mayoría de navegadores implementan ES2015 [casi en su totalidad](https://kangax.github.io/compat-table/es6/).
     
-- **Entornos de ejecución**: aunque JS nació en el navegador, desde hace unos años se usa también para escribir aplicaciones en el servidor (e incluso de escritorio). 
-+ Cada navegador tiene su propio intérprete JS. Hace unos años había incompatibilidades importantes entre ellos, que se han ido eliminando conforme se estandarizaba el lenguaje y sus APIs asociados y se dejaba de lado la "guerra de los navegadores". Actualmente los problemas de portabilidad vienen  por el lado de si el navegador ya implementa o no determinada funcionalidad.
-+ En el servidor, el entorno de ejecución más usado es Node.
+- **Entornos de ejecución**: aunque JS nació en el navegador, desde hace unos años se usa también para escribir aplicaciones en el servidor (e incluso de escritorio)
+    + Cada navegador tiene su propio intérprete JS. Hace unos años había incompatibilidades importantes entre ellos, que se han ido eliminando conforme se estandarizaba el lenguaje y sus APIs asociados y se dejaba de lado la "guerra de los navegadores". Actualmente los problemas de portabilidad vienen  por el lado de si el navegador ya implementa o no determinada funcionalidad.
+    + En el servidor, el entorno de ejecución más usado es Node.
 
-> Javascript tiene fama de ser un lenguaje "rarito" y "especial". En apariencia es como un C "con tipos dinámicos" pero esconde muchas sutilezas por debajo de la superficie. Podéis ver algunas en tono humorístico  en la conocida charla titulada [WAT](https://www.destroyallsoftware.com/talks/wat). Os recomiendo verla solo "por las risas" (dura menos de 5 minutos). En esta charla no explica el por qué de los extraños resultados, si tenéis realmente curiosidad podéis verla por ejemplo en [este video](https://www.youtube.com/watch?v=oK2vXWfCnt4) o [en este artículo](https://medium.com/dailyjs/the-why-behind-the-wat-an-explanation-of-javascripts-weird-type-system-83b92879a8db).
+> Javascript tiene fama de ser un lenguaje "rarito" y "especial". En apariencia es como un C "con tipos dinámicos" pero esconde muchas sutilezas por debajo de la superficie. Podéis ver algunas en tono humorístico  en la conocida charla titulada [WAT](https://www.destroyallsoftware.com/talks/wat). Os recomiendo verla solo "por las risas" (dura menos de 5 minutos, y la parte de JS empieza en el 1:20). En esta charla no explica el por qué de los extraños resultados, si tenéis realmente curiosidad podéis verla por ejemplo en [este video](https://www.youtube.com/watch?v=oK2vXWfCnt4) o [en este artículo](https://medium.com/dailyjs/the-why-behind-the-wat-an-explanation-of-javascripts-weird-type-system-83b92879a8db).
+
+
+Aquí tenéis algunas herramientas online para poder probar código JS sin instalar nada
+
+| Tipo | Herramienta | Características principales |
+|------|-------------|-----------------------------|
+| **Playgrounds Web** (JS en navegador) | [PlayCode](https://playcode.io/) | Editor muy visual, salida en vivo.<br>Permite HTML, CSS y JS juntos.<br>No requiere login para pruebas rápidas. |
+| | [JSFiddle](https://jsfiddle.net/) | Ideal para demos rápidas.<br>Soporte para HTML, CSS, JS y librerías externas. |
+| | [CodePen](https://codepen.io/pen/) | Muy usado para prototipos visuales.<br>Buena integración con librerías frontend. |
+| **Intérpretes Node.js Online** | [OneCompiler](https://onecompiler.com/nodejs) | Muy simple y directo.<br>Permite compartir enlaces al código.<br>No requiere registro. |
+| | [Programiz](https://www.programiz.com/javascript/online-compiler/) | Extremadamente básico pero rápido.<br>Perfecto para fragmentos cortos. |
+
 
 ## Sintaxis básica
 
@@ -39,17 +51,19 @@ Javascript nació en el lado del cliente, dentro del navegador, pero en los últ
 
 ### Variables y constantes
 
-- No tienen tipo predefinido, o mejor dich{o, *el tipo puede cambiar dinámicamente*.
-- No existen palabras clave en el lenguaje para definir tipos. Las variables se declaran simplemente con `var`
+- No tienen tipo predefinido, o mejor dicho, *el tipo puede cambiar dinámicamente*.
+- No existen palabras clave en el lenguaje para definir tipos. Las variables se declaran simplemente con `let`
 
 ```javascript
-var a;
+let a;
 
 a = 1;
 a = "Hola"; //Cambiamos el tipo. Y JS sin rechistar
 a = [1,2];  //Literal para definir un array. Sigue sin rechistar
 b = "OK";   //Podemos usar variables no declaradas. Se declaran automáticamente
 ```
+
+> Antes de la introducción de `let` durante muchos años las variables se declaraban con la palabra clave `var`. Ya no se recomienda su uso, aunque lo veréis mucho por razones históricas. Hay algunas diferencias entre `let` y `var` que iremos viendo
 
 - Internamente se diferencia entre tipos *primitivos* (numérico, *booleano*, cadena) y objetos, que son referencias, como en Java (por ejemplo `Date`, `RegExp`, entre las "clases" predefinidas en JS, o los objetos que podemos definir nosotros)
 
@@ -65,7 +79,7 @@ typeof new Date() //"object"
 - El valor de una variable declarada pero no inicializada es un valor especial llamado `undefined`    
 
 ```javascript
-var no_definida;
+let no_definida;
 console.log(no_definida)  //"undefined", variable declarada pero no inicializada
 //Comprobar si una variable es undefined
 //Luego veremos por qué se usa el operador `===` en lugar del típico `==`
@@ -74,23 +88,7 @@ if (no_definida===undefined)
 console.log(c)  //ERROR, intentamos leer una variable no declarada
 ```
 
-- En Javascript existe también un valor vacío o `null` que es casi lo mismo que `undefined`, aunque [hay pequeñas diferencias](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/null)
-
-- **Modo estricto**: considera errores ciertos comportamientos "toleradas" en JS, por ejemplo asignar un valor a una variable no declarada
-
-```javascript
-//Activar modo estricto en todo el ámbito del script
-'use strict'
-b = 1 //¡Error!
-
-function estricta(){
-  // Activar modo estricto solo en una función
-  'use strict';
-  function anidada() { return "¡Y yo!"; }
-  return "Soy una función en modo estricto  " + nested();
-}
-function noEstricta() { return "Yo no estoy en modo estricto"; }
-```
+- En Javascript existe también un valor vacío o `null` que es casi lo mismo que `undefined`, aunque en general se asume que `undefined` es algo no definido todavía o no existente y `null` es algo "vacío a propósito", un valor puesto "adrede" por el programador para indicar vacío.
 
 - A diferencia de C y derivados, el ámbito de las variables definidas con `var` no es el bloque (`{...}`) en que se definen, sino la función entera, o el ámbito global si están fuera de una función (más adelante veremos las funciones)
 
@@ -106,8 +104,6 @@ else {
 ```
 
 Es como si el intérprete  de JS moviera las declaraciones de variables al principio del código (al estilo de lo que en la universidad os recomendábamos hacer en los tiempos de programación 1 :) ). Esto se conoce como *hoisting*.
-
-- En ES2015 se introdujo `let` como alternativa a `var` para declarar variables. `let` define una variable con ámbito de bloque (`{...}`), al estilo C. Si en el ejemplo anterior cambiamos `var` por `let` obtendremos un error en tiempo de ejecución en el `console.log` al no estar definida la variable `prueba`.
 
 - Para definir constantes se usa `const`
 
@@ -135,7 +131,6 @@ false=="0" //true!!, porque "0" se convierte a 0, e igual que en C, 0 es false
 - Existe una variante del `for` que nos permite iterar por todas las propiedades de un objeto, la veremos cuando hablemos de objetos  
 - Los errores se gestionan con *excepciones* al estilo Java, con `try...catch...finally`.
 
-[DEMO en repl.it](https://repl.it/KxGO/3)
 ```javascript
 try {
   var a = 4;
@@ -149,9 +144,9 @@ try {
   console.log("Pase lo que pase, llegamos al finally");
 }
 ```
+- Las excepciones lanzadas por el *runtime* son instancias de la ["clase" `Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 
 - Podemos lanzar nuestras propias excepciones con `throw`. Podemos lanzar un objeto de cualquier clase o simplemente una expresión (numérica, de cadena, booleana,...). 
-- En Javascript las excepciones lanzadas por el *runtime* son instancias de la ["clase" `Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 
 ```javascript
 //Ejemplos de uso de throw
@@ -185,7 +180,7 @@ console.log(saludo(42));      //Hola 42 (podemos pasar cualquier tipo)
 
 > En el ejemplo anterior puede verse que cuando intentamos "sumar" una cadena y un valor numérico, Javascript convierte automáticamente el número a cadena y concatena ambas.
 
-- Se recomienda **declarar las variables locales a las funciones** con `var` para evitar que por descuido estemos referenciando una global
+- Se recomienda **declarar las variables locales a las funciones** para evitar que por descuido estemos referenciando una global
 
 ```javascript
 var mensaje = 'Soy tu padre';
@@ -326,7 +321,7 @@ var persona = {
 - Podemos ver esto como **una forma de herencia en la que un objeto concreto hereda de otro**, en lugar de una clase de otra.
 
 
-[DEMO en repl.it](https://repl.it/@ottocol/SuddenCorruptObjectcode)
+
 ```javascript
 var original = {
   nombre: "original",
@@ -352,7 +347,7 @@ console.log(descendiente.hasOwnProperty("nombre")) //Ahora será true
 - Sin acudir a librerías externas, **la forma más habitual de definir una clase en versiones anteriores a ES2015** consiste en definir una función con el nombre de la clase, usarla como constructor, y asignarle propiedades al prototipo de esta función. Podéis ver un ejemplo [aquí](https://leanpub.com/understandinges6/read#leanpub-auto-class-like-structures-in-ecmascript-5) de este patrón, usado en multitud de sitios.
 - Finalmente en ES2015 se añadieron clases al lenguaje, con una sintaxis similar a la de otros lenguajes más clásicos. 
 
-[DEMO en repl.it](https://repl.it/KxLq/0)
+
 ```javascript
 class Persona {
     constructor(nombre) {
@@ -389,7 +384,7 @@ A destacar del código anterior:
 
 Para crear una clase que herede de otra la definimos con `extends`
 
-[DEMO en repl.it](https://repl.it/KxLq/1)
+
 ```javascript
 class StarWarsFan extends Persona {
     constructor(nombre) {
@@ -435,4 +430,121 @@ a[100] = "¡último ahora!"; //los elementos entre la pos. 3 y la 99 son "undefi
 
 - La [clase Array](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array) implementa muchos métodos interesantes para trabajar con arrays, por ejemplo para añadir/eliminar elementos, iterar, buscar elementos, ...
 
+
+## Código asíncrono
+
+Javascript es un lenguaje *monohilo* por diseño. Eso quiere decir que cuando queremos ejecutar una operación costosa en tiempo de ejecución no podemos hacerlo en un hilo adicional nativo JS, para que se ejecute en paralelo con el código principal, lo que haremos es usar código asíncrono, lanzando la operación y "diciéndole al intérprete" qué debe continuar ejecutando cuando ésta acabe.
+
+Normalmente esa "operación costosa" se va a realizar fuera de Javascript. Si por ejemplo se trata de una *query SQL* a un servidor de bases de datos, esa *query* la puede ejecutar código C/C++ en el *driver* de la BD en particular.
+
+> Decir que Javascript sea monohilo no es totalmente correcto desde que existen los *workers*, que son como hilos secundarios, pero de momento no trabajaremos con ellos.
+
+En Javascript se pueden usar tres métodos para escribir código asíncrono:
+
+- *Callbacks*: es el más antiguo y que genera un código más complicado y tiende a no usarse demasiado salvo en APIs antiguos. Un *callback* es un bloque de código en forma de función que se le pasa a un método asíncrono para indicarle que lo llame cuando la operación haya terminado.
+- *Promesas*: una promesa es un objeto que representa una operación asíncrona. Puede estar en varios estados: pendiente/*pending*, cumplida/*fulfilled* (ha acabado con éxito) o rechazada/*rejected* (ha acabado con error).
+- *async/await*: aunque internamente usa promesas es una forma de escribir código asíncrono lo más parecido a como si fuera síncrono, por lo que la estructura queda mucho más "limpia".
+
+### Callbacks
+
+Los APIs asíncronos más antiguos de Javascript se basan en *callbacks*. Algunos se usan todavía en la actualidad de modo común. Por ejemplo. `setTimeOut` permite ejecutar una función transcurrido un determinado número de milisegundos. El primer parámetro de la función precisamente es el *callback* a ejecutar transcurrido ese tiempo:
+
+```javascript
+setTimeout(()=>console.log("Ya!"), 1000)
+console.log("yo aparezco enseguida")
+```
+
+El problema de los *callbacks* es que cuando encadenamos varias operaciones asíncronas seguidas generan código difícil de leer, ya que dentro del *callback* de la primera operación tenemos que definir el *callback* de la segunda, con lo que acabamos con código anidado varios niveles (lo que se conoce popularmente como "[callback hell](https://callbackhell.com)"). 
+
+Siguiendo con el ejemplo del `setTimeout`, si transcurrido el primer temporizador quisiéramos ejecutar otro tendríamos que hacer algo como:
+
+```javascript
+setTimeout(()=>{
+  console.log("Ya 1!")
+  setTimeout(()=>{
+    console.log("Ya 2!")
+  }, 1000)
+}, 1000)
+```
+
+### Promesas. Uso con `.then`
+
+Estaba claro que hacía falta un mecanismo más práctico para manejar el código asíncrono que los simples *callbacks*. La mayoría de APIs modernos en Javascript usan las promesas para manejar el código asíncrono. Veremos primero la forma clásica, que genera código un poco "embarullado" (aunque mucho más legible que con los *callbacks*) y luego la que usa "async/await".
+
+Por ejemplo tanto en node como en el navegador existe un método llamado `fetch` que permite hacer peticiones HTTP. Dicho método devuelve una promesa, que como ya hemos dicho va pasando por varios estados, inicialmente estará pendiente y luego puede acabar en "cumplida con éxito" / *fulfilled* o en "fallada" / *rejected*.
+
+`then` es un método de la clase `Promise` al que le pasamos una función a ejecutar cuando la promesa termine con éxito y que devuelve otra promesa con el resultado de la anterior (lo cierto es que la descripción es un poco liosa pero espero que se vea mejor con un ejemplo). Podemos probar:
+
+```javascript
+fetch("https://www.ua.es").then(()=>{
+  console.log("petición acabada con éxito")
+})
+```
+
+Cuando se cumpla con éxito la promesa que devuelve `fetch` se ejecutará la función que le pasamos a `then`. En realidad esta función recibirá automáticamente como parámetro un objeto o dato con el contenido de la promesa "cumplida". Para saber exactamente de qué tipo es ese parámetro hay que mirar la documentación de la función asíncrona que estamos llamando, en este caso si leemos la de `fetch` veremos que devuelve un objeto del tipo `Response`, que tiene datos diversos sobre la respuesta HTTP (aunque no directamente el contenido):
+
+```javascript
+fetch("https://www.ua.es").then((resp)=>{
+  console.log(resp)
+})
+```
+
+Pero la "gracia" de `then` es que nos permite encadenar operaciones asíncronas, ya que devuelve lo que devuelva la función que le pasamos envuelto en una promesa (que por tanto podemos encadenar otra vez con `then`). Por ejemplo, decodificar el contenido de una respuesta HTTP en javascript es asíncrono, por lo que exige concatenar 2 operaciones asíncronas: hacer la petición + decodificar el contenido. Con .then resulta más natural de lo que sería con *callbacks* "puros":
+
+```javascript
+fetch("https://www.ua.es")
+  // 1º then: convierte la respuesta en texto
+  .then(response => response.text())
+  // 2º then: imprime los 100 primeros caracteres
+  .then(texto => {
+    console.log(texto.slice(0, 100)); 
+  })
+```
+
+Si la promesa acabara con error, podríamos detectarlo con un método especial `.catch` que se encadena con el resultado del `.then`
+
+```javascript
+fetch("https://www.ua.es")
+  .then(response => response.text())
+  .then(texto => {
+    console.log(texto.slice(0, 100)); 
+  })
+  .catch(error => {
+    console.error("Error en la petición:", error);
+  });
+```
+
+### async/await
+
+Aunque la sintaxis del `.then` es una mejora considerable con respecto al uso de *callbacks* (¡creedme!), sigue siendo tediosa y algo confusa. La funcionalidad de `await`, que se introdujo en Javascript algunos años después que el `.then`, nos permite escribir código asíncrono de forma mucho más limpia:
+
+```javascript
+try {
+    const response = await fetch("https://www.ua.es");
+    const texto = await response.text();
+    console.log(texto.slice(0, 100));
+  } catch (error) {
+    console.error("Error en la petición:", error);
+  }
+```
+
+`await` se coloca delante de cada método que devuelva una promesa y desde el punto de vista del programador asegura que el código no va a continuar hasta que la promesa termine, una vez hecho esto nos devolverá el resultado. En caso de terminar con error para detectarlo ahora podemos usar un `catch` estándar de Javascript en lugar de tener que usar el `.catch` especial para las promesas.
+
+Es muy importante destacar que poner `await` delante de una llamada asíncrona no la convierte en síncrona, sigue siendo código asíncrono y sigue teniendo sus peculiaridades. Por ejemplo si envolviéramos el código anterior en una función para poder llamarlo desde donde queramos habría que marcar la función como `async` para indicar que contiene código asíncrono. Y si llamamos a la función debemos hacerlo con `await`.
+
+
+```javascript
+async function mostrarUA() {
+  try {
+    const response = await fetch("https://www.ua.es");
+    const texto = await response.text();
+    return texto.slice(0, 100);
+  } catch (error) {
+    console.error("Error en la petición:", error);
+  }
+}
+
+texto = await mostrarUA()
+console.log(texto)
+```
 
