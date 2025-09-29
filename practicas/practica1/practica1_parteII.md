@@ -44,3 +44,8 @@ Podéis realizar cualquier otra ampliación o mejora que se os ocurra, pero cons
 La fecha límite para la entrega será  **el lunes 20 de octubre a las 23:59**. La entrega se realizará comprimiendo todos los archivos de vuestro proyecto en un .zip y subiéndolos a moodle (¡¡acordáos de no comprimir el `node_modules`!!).
 
 
+Además del código tendréis que entregar la siguiente documentación:
+
+- Siempre que uséis un LLM deberíais incluir un log con los prompts usados (para abreviar no es necesario que incluyáis las respuestas completas del LLM)
+- Un video entre 2 y 4 minutos de duración tipo screencast en el que los dos componentes del grupo expliquéis al 50% la estructura del código desarrollado y los requerimientos adicionales, si los hay.
+
