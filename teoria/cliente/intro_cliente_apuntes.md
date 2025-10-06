@@ -51,26 +51,20 @@ boton.addEventListener('click', function() {
 Los eventos sobre una etiqueta HTML *suben*  hacia arriba en la jerarquía de etiquetas (*bubbling up*), de modo que podemos capturarlos también en niveles superiores.
 
 ```html
-<body>
-  <button id="boton">Pulsa aquí</button>
-  <p>Hola, aquí también puedes pulsar</p>
-</body> 
+<div id="outer" style="padding: 20px; background: lightblue">
+  Outer
+  <div id="inner" style="padding: 20px; background: lightgreen">
+    Inner
+    <button id="boton">Botón</button>
+  </div>
+</div> 
 ```
 ```javascript
-document.getElementById('boton').addEventListener('click', function(e) {
-  console.log('en el listener del botón')
-  //si ponemos esto, paramos el bubbling
-  //e.stopPropagation()
-})
-//Aquí recibiríamos también los clicks sobre el "button" y el "p"
-document.addEventListener('click', function(e){
-  //En un listener, this es el objeto al que está vinculado el evento.Aquí document
-  console.log("this es " + this.nodeName) //document
-  //target es el "objetivo" del evento. P.ej. si clicamos en el boton será este
-  console.log('click sobre ' + e.target.nodeName)
-})
+document.getElementById("outer").addEventListener('click', () => console.log('outer bubbling'))
+document.getElementById("inner").addEventListener('click', () => console.log('inner bubbling'))
+document.getElementById("boton").addEventListener('click', () => console.log('boton bubbling'))
 ```
-[https://jsbin.com/buvoyif/edit?html,js,console,output](https://jsbin.com/buvoyif/edit?html,js,console,output)<!-- .element class="caption" -->
+[https://jsbin.com/hohacirali/edit?html,js,console,output](https://jsbin.com/hohacirali/edit?html,js,console,output)<!-- .element class="caption" -->
 
 
 La delegación de eventos es útil cuando queremos asignar un comportamiento similar a varios elementos sin tener que repetir el *event listener* para cada uno 
