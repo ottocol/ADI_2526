@@ -7,7 +7,7 @@
 
 ---
 
-Necesitamos alguna funcionalidad de JS en el navegador para poder hacer peticiones al servidor (Un API, típicamente REST, salvo casos como Firebase)
+Necesitamos alguna funcionalidad de JS en el navegador para poder hacer peticiones al servidor (Un API típicamente REST, salvo casos como Pocketbase u otros APIs RPC)
 
 <img src="images_logica/modern_webapp.png" class="r-stretch">
 
@@ -36,7 +36,7 @@ Es una combinación de tecnologías:
 ---
 
 
-## Formato de datos en AJAX
+## Formato de datos en AJAX: casi siempre JSON
 
 Originalmente se usaba XML para intercambiar datos, pero es tedioso de *parsear* con JS (hay que usar el API DOM), mientras que convertir una cadena de texto JSON a objeto JS es trivial con el API estándar
 
@@ -52,62 +52,56 @@ console.log(JSON.stringify(objeto))
 
 ---
 
+## Una nota sobre seguridad en el lado del servidor
+
+(Si escribiéramos nuestro propio servidor, cosa que no hacemos con Pocketbase) No nos podemos fiar de lo que llega desde el cliente, usar validadores de esquema JSON, que comprueban que el objeto cumpla un formato, como [ajv](https://ajv.js.org) o [zod](https://zod.dev) 
+
+```javascript
+import * as z from 'https://cdn.jsdelivr.net/npm/zod@4.1.12/+esm';
+
+const UsuarioSchema = z.object({
+  login: z.string(),
+  nombre: z.string(),
+});
+
+let texto = '{"login":"pepe@ua.es", "nombre":"Pepe Pérez", "edad":22}';
+
+const datos = JSON.parse(texto); //puede tener campos adicionales y/o de tipos distintos
+const usuario = UsuarioSchema.parse(datos); // lanza excepción si no encaja, filtra campos adicionales
+```
+
+[https://playcode.io/2577994](https://playcode.io/2577994)
+
+---
+
 ## Hacer peticiones HTTP con el `fetch` API
+
+Por defecto se hace una petición GET
 
 
 ```html
-<img src="" id="avatar">
+<h1 id="header">Avatar de Github</h1>
+<input type="search" id="buscado"><button id="buscar">Buscar usuario de Github</button>
+<img src="" id="imagen">
 ```
 
 ```javascript
-try {
-  var respuesta = await fetch('https://api.github.com/users/octocat')
-  //la conversión de cadena JSON a texto es asíncrona!!!
-  var datos = await respuesta.json()
-  document.getElementById("avatar").src = datos.avatar_url
-  if (respuesta.ok) {
-      console.log('El servidor devuelve OK: ' + respuesta.status)
-  }
-}
-catch (error) {
-    console.log('FAIL!!')
-    console.log(error)
-}
+document.getElementById("buscar").addEventListener("click", async function(){
+  let resp = await fetch('https://api.github.com/users/' + document.getElementById("buscado").value)
+  let datos = await resp.json()
+  console.log(datos)
+  document.getElementById("imagen").src = datos.avatar_url
+})
 ```
 
-[https://jsbin.com/sarahuc/edit?html,js,output](https://jsbin.com/sarahuc/edit?html,js,output)
-
-
+[https://playcode.io/2577537](https://playcode.io/2577537)
 
 ---
 
-## Versión con promesas
-
-```javascript
-fetch('https://api.github.com/users/octocat')
-  .then(function(respuesta){
-     return respuesta.json()
-  })
-  .then(function(datos){
-    console.log(datos)
-     document.getElementById("img_avatar").src = datos.avatar_url
-  })
-  .catch(function(error){
-      console.log('FAIL!!')
-      console.log(error)
-  })
-//Cuidado, fetch es asíncrono  
-console.log('Cuando se ejecuta esto todavía no se ha recibido la respuesta!!')
-```
- 
-[https://jsbin.com/yuhutiz/edit?html,js](https://jsbin.com/yuhutiz/edit?html,js)
-
-
----
 
 ## Peticiones más complejas con `fetch`
 
-Por defecto se hace una petición `GET`. Para cambiar el tipo de petición, añadir cabeceras, cuerpo de petición, etc, podemos pasar un segundo parámetro que es un objeto JS con las propiedades:
+Para cambiar el tipo de petición, añadir cabeceras, cuerpo de petición, etc, podemos pasar un segundo parámetro que es un objeto JS con las propiedades:
 
 [https://jsbin.com/razelec/edit?html,js,console](https://jsbin.com/razelec/edit?html,js,console)<!-- .element: class="caption" -->
 
@@ -133,35 +127,50 @@ console.log(datos.login)
 
 En **aplicaciones "tradicionales"** el navegador es el responsable de enviar los datos tecleados en los campos del formulario, y este proceso se desencadena automáticamente con un `input` de `type=submit`.
 
-En **aplicaciones con AJAX** y formularios el código JS es el que debe recolectar los datos contenidos en los campos y enviarlos con `fetch`. Este proceso se puede desencadenar con un `<button>` convencional, no hace falta un . Si usamos un  `type=submit` necesitaremos `preventDefault()` para que el navegador no desencadene el envío, *en caso contrario la página actual se perdería*.
+En **aplicaciones con AJAX** y formularios el código JS es el que debe recolectar los datos contenidos en los campos y enviarlos con `fetch`. Este proceso se puede desencadenar con un `<button>` convencional. Si usamos un  `type=submit` necesitaremos `preventDefault()` para que el navegador no desencadene también el envío, *en caso contrario la página actual se perdería*.
 
 
 ---
 
 
 ```html
-<input type="text" id="login"/>
-<input type="password" id="password"/>
-<!-- Fijaos en que el botón no es submit -->
-<button id="boton">Dar de alta</button>
+<form id="form_login">
+  <input type="text" id="username"/>
+  <input type="text" id="email"/>
+  <input type="submit" value="Dar de alta">
+</form>
 ```
-El JS lanza un `fetch` cuando se pulsa el botón
+
 
 ```javascript
-document.getElementById('boton').addEventListener('click', function(){
-  var datos = {
-       login: document.getElementById('login').value,
-       password: document.getElementById('password').value
-      }
-  fetch('http://reqres.in/api/users', {
-    method: 'POST',
-    headers: {
-      'Content-type':'application/json'
-    },
-    body: JSON.stringify(datos)
-  })      
-})
+document.getElementById('form_login').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const datos = {
+      username: document.getElementById('username').value,
+      email: document.getElementById('email').value,
+    };
+    let resp = await fetch('https://jsonplaceholder.typicode.com/users', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(datos),
+    });
+    let datosResp = await resp.json();
+    console.log(datosResp);
+});
 ```
+
+[https://playcode.io/2578013](https://playcode.io/2578013)
+
+---
+
+## ¿Y qué pasa con el API de pocketbase?
+
+El API JS de Pocketbase es de tipo RPC y hace transparentes las llamadas remotas, por eso no vemos el `fetch` (pero estar, está)
+
+Podéis verlo en las "Herramientas para desarrolladores" de vuestro navegador, típicamente dentro de la solapa "Red" pueden verse las peticiones HTTP.  Debe haber una opción llamada "XHR" para ver las hechas con AJAX
+
 
 ---
 
@@ -188,7 +197,7 @@ Por ejemplo, el Javascript de una página de `www.vuestrositio.com` en principio
 
 *(Cross Origin Resource Sharing)* : permite saltarse la *same origin policy* con la colaboración del servidor
 
-- En cada petición *cross-domain* el navegador envía una cabecera `Origin` con el origen de la petición. Es imposible falsearla desde JS 
+- En cada petición *cross-domain* el navegador envía automáticamente una cabecera `Origin` con el origen de la petición. Es imposible falsearla desde JS 
 - El servidor puede enviar una cabecera `Access-Control-Allow-Origin` indicando los orígenes desde los que se puede acceder a la respuesta. Si encajan con el origen de la petición el navegador dará “luz verde” 
 
 ```http
@@ -197,14 +206,16 @@ Server: Apache/2.0.61   
 Access-Control-Allow-Origin: * 
 ```
 
+⚠️ CORS es para proteger al navegador y a su usuario, no al servidor
+
 ---
 
 
 ## ¿Necesitamos CORS para usar un API propio?
 
-No, pero nos da la libertad de que el servidor del API y del sitio web sean distintos
+No, pero nos da la libertad de que el servidor del API y el del *frontend* sean distintos
 
-![](images_logica/cors_nuestro_api.png) <!-- .element: class="stretch" -->
+![](images_logica/servidor_front_y_servidor_back.png) <!-- .element: class="stretch" -->
 
 
 ---
