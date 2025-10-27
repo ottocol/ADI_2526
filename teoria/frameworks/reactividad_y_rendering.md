@@ -380,7 +380,10 @@ Notas:
 
 Según se mire, podéis considerar el DOM virtual como una idea genial o todo lo contrario...
 
+<iframe width="872" height="491" src="https://www.youtube.com/embed/AdNJ3fydeao?start=282&cc_load_policy=1" title="Rich Harris - Rethinking reactivity" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 [Virtual DOM is pure overhead, Rich Harris](https://svelte.dev/blog/virtual-dom-is-pure-overhead)
+
 
 
 Posiblemente la mejor parte del DOM virtual es que le permite al desarrollador de React mantener un **modelo mental sencillo** de "cómo se pinta todo el sistema en el estado actual" 
