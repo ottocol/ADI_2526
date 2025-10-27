@@ -573,6 +573,8 @@ export default function Comparison() {
 render(<Comparison />, document.getElementById("app"))
 ```
 
+- Usar {count} es más eficiente, porque al estilo SolidJS solo actualiza el nodo del DOM donde está el valor, no repinta el componente entero. Pero si otra cosa del render dependiera del valor de count (por ejemplo si count>0 mostramos una cosa y si no otra) tendríamos que usar {count.value} para forzar a reevaluar el JSX
+
 ---
 
 
