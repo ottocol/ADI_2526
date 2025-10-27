@@ -273,7 +273,7 @@ function App() {
 
 En el ejemplo tenemos un componente `App` con dos subcomponentes `Counter` y `Message`. Cuando se actualizan los datos se renderiza todo de nuevo
 
-[Ejemplo online](https://reactplayground.vercel.app/#N4IgLgziBcBmCGAbCBTANCAbrK1QEsA7AExQA8A6AK1xHwFsAHAewCcwACAQUcY9lbN6HAOQUA9D0bUIZEQB1CDFuw4AlFPADGnAUNGtNOhUqZtOwDlsPwwKNc2acAvv0HCRNnQFpiQ8VqI+CiEYCaKWsyEEJyRofBEKKwcALwcfloArvQhYBQA5ihgAKKIKDmhAEIAngCSxAAUno5hAJQRUTEcgk6pVjZ2Dk4NcWAJhEnthD15hiRJDYoc6kZ51pp2peW5i4TLyxraeQDKYKz4OgCyzKRoS-uEmYiId3v7hzoU67YoWxVgDSkU2WU1aIAwUhkZBgdDMqg+YDQHGAmVQpx+rj0Hi8YUU934mUIOnwUW4vAarWR+P2cS6AG1IoTERxUGAAMLMJkAXT6qJQ6LsDQADK0ANzU5a0zh0nIQCDwQpI1mXFByhUoHlpPkClBNBH4TD4YjwYgAQlNIjFeLe+ysnWYZQoiGY+SaUhZKA4AAt4N0QqRzgAvE3MS3iwgSv1gTKsPa7W22gA8xANAD5I7bgOIAFQcDlmCahT2MeCsX0oRB2+J+ZLZ8TODP7RMcplJO1MlLARmhVxRWpEwz-TsU1Kpj3szmhEaTzgAag4AEZWq5xOmIzaE8ss7n8yxC3YOCWyxwKxwKvKqJ66w2N5vEyq1YVG7bZfLCp3X+qb5vN1EAKqMMadgPm+KDDpSKRjsAz4JmUnCPCgmDMH0jDuIwAIiAAcpkiHIee8CXmGMG2vgsAcA0CFIZS0G3j+trKqqoEUThVHhnRm7fuxyzOJxdGro2ibiCmmBrpuVobje1KwISxKki2RasA0ljdsyfYDtsoQcM41GRrSDooE6LpNPJdjJKg3q+nMAb4MGfhEeum6GNGsbkQJwmiexiZeguqZdjOziCd5Hl0YmABGmRgGApJRGyQRaAA1p2anrP8zipv2KW5KWgnhZFUTBQmgnuZG4m2pJG7SUSYAknsIHqkpZ6MeqSL-oBPx1YUWk6bRemOs6roiB1nrmT6frzEGIb2ZGTkxnGblpjBiaML5n6FAF4jLYtuVRXsMVxYlwCtUBKBDWlXA6JkSA2aWjXRARKA5RFO0FUmQkLbRpX7OVtrkConCkAgTycFIIA8UAA)
+[Ejemplo online](https://reactplayground.vercel.app/#N4IgLgziBcBmCGAbCBTANCAbrK1QEsA7AExQA8A6AK1xHwFsAHAewCcwACAQUcY9lbN6HAOQUA9D0bUIZEQB1CDFuw4AlFPADGnAUNGtNOhUqZtOwDlsPwwKNc2acAvv0HCRNnQFpiQ8VqI+CiEYCaKWsyEEJyRofBEKKwcALwcfloArvQhYBQA5ihgAKKIKDmhAEIAngCSxAAUno5hAJQRUTEcgk6pVjZ2Dk4NcWAJhEnthD15hiRJDYoc6kZ51pp2peW5i4TLyxraeQDKYKz4OgCyzKRoS-uEmYiId3v7hzoU67YoWxVgDSkU2WU1aIAwUhkZBgdDMqg+YDQHGAmVQpx+rj0Hi8YUU934mUIOnwUW4vAarWR+P2cS6AG1IoTERxUGAAMLMJkAXT6qJQ6LsDQADK0ANzU5a0zh0nIQCDwQpI1mXFByhUoHlpPkClBNBH4TD4YjwYgAQlNIjFeLe+ysnWYZQoiGY+SaUhZKA4AAt4N0QqRzgAvE3MS3iwgSglEsAkvZEdb-ClUm225asjlMkac0IcADUHAAjMDU85ramo8TSZlGMa7Cq1YUk8BI8sypxHihMMw+ox3IwASIAHKZTvdiryqgoMMtjj4WAcBodruU5sp8sesD1+WNpfMK1r-alg9HyOGMCZVh7XbrjgAHmIBoAfDPlsBxAAqDgcswTUKexjwKwvooIgdrxH4yTvuIR43sst4Zn+ySMqEKTAMhYCuFEtREoY-yofGuG5K44jPhGB62m+n7fiwv52BwAFARwIEcOO8CThwUEwbBt5buqL77LK24oKhgnqlxsEcFEACqNY-LxhSodWtYoPJKDieuJEzre4gPpgpHlvutonimsCEpWewIXYrANJY6FIlhOHbDmzgrpGtIOigTouk0llJB63q+nMAb4MGfjTmR5ZnheV5abp+ncV6BaPmh2YYdpiXxTet4AEaZGAYCklEbJBFoADWqEOQmRGPthVXxKw2m5flUSZam2lxZGhmHmW+ymdGsYcKpNksaqQn2YQMnKapHAucm5buY6zquiI02oAFfrzEGIbhaeRTRQusVPvxt6MMlomFM42mncdTUFXsRUleVwDSbJdajWJj5cDomRICFgEjdEbEoI1eV3a1trtUdB5dcsxm2uQKicKQCBPJwUggM4zhAA)
 
 
 
@@ -290,20 +290,26 @@ import React, {useState} from 'react'
 
       console.log('App se ha renderizado');
 
+      function increment() {
+         setCount(count + 1)
+      }
+
+      function updateMessage() {
+        let nuevo = prompt('Nuevo mensaje');
+        if (nuevo) {
+           setMessage(nuevo);
+        }
+      }
+
       return (
         <div>
           {/* Componente para el contador */}
-          <Counter count={count} onIncrement={() => setCount(count + 1)} />
+          <Counter count={count} onIncrement={increment} />
 
           {/* Componente para el mensaje */}
           <Message
             message={message}
-            onUpdateMessage={() => {
-              let nuevo = prompt('Nuevo mensaje');
-              if (nuevo) {
-                setMessage(nuevo);
-              }
-            }}
+            onUpdateMessage={updateMessage}
           />
         </div>
       );
