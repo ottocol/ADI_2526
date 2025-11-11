@@ -481,6 +481,17 @@ const { data, isLoading, isError, error } =
 
 ---
 
+## Actualizaciones optimistas
+
+Antes de esperar la respuesta del servidor (OK, error) se actualiza la cache local para que la interfaz parezca instantánea. Si luego el servidor devuelve error (`onError`) deshacemos los cambios. Si todo ha ido bien (`onSettled`) en el ejemplo invalidamos la cache por si alguien le ha dado like a otro post.
+
+Ver el código de `useLikeMutation` en [usePostsQueries.js](https://github.com/ottocol/client-blog-tanstack/blob/main/src/queries/usePostsQueries.js)
+
+
+
+---
+
+
 ## Pinia Colada
 
 [https://pinia-colada.esm.dev](https://pinia-colada.esm.dev)
