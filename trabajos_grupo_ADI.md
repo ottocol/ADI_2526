@@ -12,12 +12,12 @@
 ## Contenido
 
 - El objetivo es que todos podamos aprender algo sobre un tema que no hayamos visto en la asignatura, de manera que se valorará la claridad en las explicaciones y que sea ilustrativo sobre el tema. También se valorará el rigor técnico.
-- Puede ser un trabajo teórico, teórico/práctico o bien solo práctico. Este último caso sería desarrollar algo que teóricamente hayamos visto en clase pero no hayamos implementado ni en la parte obligatoria ni optativa de las prácticas (por ejemplo, implementación de un API GraphQL para el backend de vuestra práctica)
+- Puede ser un trabajo teórico/práctico o bien solo práctico. Este último caso sería desarrollar algo que teóricamente hayamos visto en clase pero no hayamos implementado ni en la parte obligatoria ni optativa de las prácticas (por ejemplo, implementación de un API GraphQL para el backend de vuestra práctica)
 - Se debe incluir una **lista de referencias** (libros, sitios web, videos, LLMs, etc) de donde hayáis sacado la información. Es evidente que si no sois expertos en el tema la información no podéis aportarla vosotros directamente, pero lo suyo es que elijáis unas cuantas referencias y ordenéis y sinteticéis el contenido de todas ellas. Si se detecta que el trabajo es un plagio en gran medida de una sola fuente implicará el suspenso.
 
 ## Baremo de evaluación
 
-> Dado que la asignatura es eminentemente práctica no se valorarán los trabajos exclusivamente teóricos, aunque por supuesto un trabajo puede contener ciertos apartados teóricos (típicamente los iniciales). Por ejemplo si vais a hacer un trabajo sobre microservicios, no lo hagáis exclusivamente teórico, incluid una implementación de un microservicio (en el lenguaje que queráis, pero que funcione y se pueda probar y que no sean simples fragmentos de código).
+> Dado que la asignatura es eminentemente práctica **no se valorarán los trabajos exclusivamente teóricos**, aunque por supuesto un trabajo puede contener conceptos teóricos. Por ejemplo si vais a hacer un trabajo sobre microservicios, no lo hagáis exclusivamente teórico, incluid una implementación de un microservicio (en el lenguaje que queráis, pero que funcione y se pueda probar y que no sean simples fragmentos de código).
 
 El trabajo debe entregarse en forma de video tipo presentación o *screencast* junto con el código desarrollado, este último podrá entregarse en un .zip o (recomendado) dejarse en un repositorio estilo Github. Mínimo 5 minutos duración. Máximo 15. Podéis subirlo a Youtube o similar o dejarlo compartido en algún servicio de compartición de archivos. No es necesario que incluyáis documentación escrita.
 
